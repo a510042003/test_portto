@@ -1,0 +1,48 @@
+.App {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.card {
+	width: 40%;
+	margin: 15px;
+}
+
+.result-container {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px;
+	width: 100%;
+	justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+	.result-container {
+		padding: 5px;
+	}
+}
+
+.footer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	overflow: scroll;
+	padding: 20px;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.footer::-webkit-scrollbar {
+	display: none;
+}
+
+.footer-item {
+	display: flex;
+	padding: 0px 100px 10px 100px;
+}
+
+.ant-input {
+	font-size: 16;
+}
