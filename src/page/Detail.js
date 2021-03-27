@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 import { getDetail } from '../service/Request';
-import { Card } from 'antd';
-import { useParams } from 'react-router-dom';
-const { Meta } = Card;
+import { Button } from 'antd';
+import { useParams, useHistory } from 'react-router-dom';
+
 const Detail = () => {
+	const history = useHistory();
 	const { contractAdress, tokenId } = useParams();
 	const [detail, setDetail] = useState({});
 	const getDetailRequest = async () => {
@@ -23,14 +24,40 @@ const Detail = () => {
 	}, []);
 	return (
 		<div className="App">
-			<Card style={{ width: '100%' }} cover={<img alt="example" src={detail.imageUrl} />}>
-				<Meta title={detail.name} description={detail.description} />
-			</Card>
-			<div>{detail.collectionName}</div>
+			<div
+				style={{
+					display: 'flex',
+					flexDirection: 'row',
+					padding: '10px 20px',
+					justifyContent: 'space-between',
+					width: '100%'
+				}}
+			>
+				<Button
+					onClick={() => {
+						history.goBack();
+					}}
+				>
+					{'<'}
+				</Button>
 
-			<div>{detail.name}</div>
+				<div>{detail.collectionName}</div>
+				<div style={{ width: 40 }}></div>
+			</div>
+			<img alt="avatar" src={detail.imageUrl} style={{ width: '100%', height: '300px', objectFit: 'contain' }} />
+
+			<div style={{ fontSize: 20 }}>{detail.name}</div>
 			<div>{detail.description}</div>
-			<div>{detail.permalink}</div>
+
+			<Button
+				type={'primary'}
+				style={{ position: 'fixed', bottom: 20 }}
+				onClick={() => {
+					window.open(detail.permalink, '_blank');
+				}}
+			>
+				Permalink
+			</Button>
 		</div>
 	);
 };
